@@ -1,0 +1,6 @@
+[submodule "HedgeLib"]
+	path = HedgeLib
+	url = https://github.com/Radfordhound/HedgeLib
+[submodule "BrawlCrate"]
+	path = BrawlCrate
+	url = https://github.com/soopercool101/BrawlCrate
