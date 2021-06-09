@@ -60,6 +60,7 @@
             this.btn_SrcPath.TabIndex = 0;
             this.btn_SrcPath.Text = "Browse...";
             this.btn_SrcPath.UseVisualStyleBackColor = true;
+            this.btn_SrcPath.Click += new System.EventHandler(this.btn_SrcPath_Click);
             // 
             // txt_SrcPath
             // 
@@ -76,6 +77,7 @@
             this.btn_SrcFile.TabIndex = 2;
             this.btn_SrcFile.Text = "Browse...";
             this.btn_SrcFile.UseVisualStyleBackColor = true;
+            this.btn_SrcFile.Click += new System.EventHandler(this.btn_SrcFile_Click);
             // 
             // btn_Save
             // 
@@ -85,6 +87,7 @@
             this.btn_Save.TabIndex = 3;
             this.btn_Save.Text = "Convert";
             this.btn_Save.UseVisualStyleBackColor = true;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
             // 
             // lbl__SrcPath
             // 
@@ -116,14 +119,13 @@
             // rad_Multi
             // 
             this.rad_Multi.AutoSize = true;
-            this.rad_Multi.Checked = true;
             this.rad_Multi.Location = new System.Drawing.Point(55, 7);
             this.rad_Multi.Name = "rad_Multi";
             this.rad_Multi.Size = new System.Drawing.Size(85, 17);
             this.rad_Multi.TabIndex = 7;
-            this.rad_Multi.TabStop = true;
             this.rad_Multi.Text = "Multiple Files";
             this.rad_Multi.UseVisualStyleBackColor = true;
+            this.rad_Multi.CheckedChanged += new System.EventHandler(this.rad_Multi_CheckedChanged);
             // 
             // rad_Single
             // 
@@ -166,6 +168,7 @@
             this.btn_OutPath.TabIndex = 12;
             this.btn_OutPath.Text = "Browse...";
             this.btn_OutPath.UseVisualStyleBackColor = true;
+            this.btn_OutPath.Click += new System.EventHandler(this.btn_OutPath_Click);
             // 
             // chk_SingleBind
             // 
