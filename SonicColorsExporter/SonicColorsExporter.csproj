@@ -79,5 +79,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BrawlCrate\BrawlLib\BrawlLib.csproj">
+      <Project>{b364218f-a032-4509-876b-0dcaf6b0bdd3}</Project>
+      <Name>BrawlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HedgeLib\HedgeLib\HedgeLib.csproj">
+      <Project>{eeb16fca-ff9f-40b5-9d43-f2460aa930c8}</Project>
+      <Name>HedgeLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
