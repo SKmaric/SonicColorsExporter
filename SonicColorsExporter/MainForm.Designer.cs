@@ -28,258 +28,258 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.btn_SrcPath = new System.Windows.Forms.Button();
+            this.txt_SrcPath = new System.Windows.Forms.TextBox();
+            this.btn_SrcFile = new System.Windows.Forms.Button();
+            this.btn_Save = new System.Windows.Forms.Button();
+            this.lbl__SrcPath = new System.Windows.Forms.Label();
+            this.lbl_SrcFile = new System.Windows.Forms.Label();
+            this.lbl_OutPath = new System.Windows.Forms.Label();
+            this.rad_Multi = new System.Windows.Forms.RadioButton();
+            this.rad_Single = new System.Windows.Forms.RadioButton();
+            this.lbl_Mode = new System.Windows.Forms.Label();
+            this.txt_SrcFile = new System.Windows.Forms.TextBox();
+            this.txt_OutPath = new System.Windows.Forms.TextBox();
+            this.btn_OutPath = new System.Windows.Forms.Button();
+            this.chk_SingleBind = new System.Windows.Forms.CheckBox();
+            this.chk_MultimatCombine = new System.Windows.Forms.CheckBox();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.chk_TagMat = new System.Windows.Forms.CheckBox();
+            this.chk_TagObj = new System.Windows.Forms.CheckBox();
+            this.lbl_Tags = new System.Windows.Forms.Label();
+            this.chk_LightmapMatMerge = new System.Windows.Forms.CheckBox();
+            this.chk_OpaAddGeo = new System.Windows.Forms.CheckBox();
+            this.chk_UVOrganize = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_SrcPath
             // 
-            this.button1.Location = new System.Drawing.Point(334, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Browse...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_SrcPath.Location = new System.Drawing.Point(334, 38);
+            this.btn_SrcPath.Name = "btn_SrcPath";
+            this.btn_SrcPath.Size = new System.Drawing.Size(75, 23);
+            this.btn_SrcPath.TabIndex = 0;
+            this.btn_SrcPath.Text = "Browse...";
+            this.btn_SrcPath.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // txt_SrcPath
             // 
-            this.textBox1.Location = new System.Drawing.Point(85, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(243, 20);
-            this.textBox1.TabIndex = 1;
+            this.txt_SrcPath.Location = new System.Drawing.Point(85, 40);
+            this.txt_SrcPath.Name = "txt_SrcPath";
+            this.txt_SrcPath.Size = new System.Drawing.Size(243, 20);
+            this.txt_SrcPath.TabIndex = 1;
             // 
-            // button2
+            // btn_SrcFile
             // 
-            this.button2.Location = new System.Drawing.Point(334, 67);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Browse...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_SrcFile.Location = new System.Drawing.Point(334, 67);
+            this.btn_SrcFile.Name = "btn_SrcFile";
+            this.btn_SrcFile.Size = new System.Drawing.Size(75, 23);
+            this.btn_SrcFile.TabIndex = 2;
+            this.btn_SrcFile.Text = "Browse...";
+            this.btn_SrcFile.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btn_Save
             // 
-            this.button3.Location = new System.Drawing.Point(265, 263);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(144, 67);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Convert";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_Save.Location = new System.Drawing.Point(265, 263);
+            this.btn_Save.Name = "btn_Save";
+            this.btn_Save.Size = new System.Drawing.Size(144, 67);
+            this.btn_Save.TabIndex = 3;
+            this.btn_Save.Text = "Convert";
+            this.btn_Save.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lbl__SrcPath
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 43);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Source Path:";
+            this.lbl__SrcPath.AutoSize = true;
+            this.lbl__SrcPath.Location = new System.Drawing.Point(12, 43);
+            this.lbl__SrcPath.Name = "lbl__SrcPath";
+            this.lbl__SrcPath.Size = new System.Drawing.Size(69, 13);
+            this.lbl__SrcPath.TabIndex = 4;
+            this.lbl__SrcPath.Text = "Source Path:";
             // 
-            // label2
+            // lbl_SrcFile
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 72);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Source File:";
+            this.lbl_SrcFile.AutoSize = true;
+            this.lbl_SrcFile.Location = new System.Drawing.Point(12, 72);
+            this.lbl_SrcFile.Name = "lbl_SrcFile";
+            this.lbl_SrcFile.Size = new System.Drawing.Size(63, 13);
+            this.lbl_SrcFile.TabIndex = 5;
+            this.lbl_SrcFile.Text = "Source File:";
             // 
-            // label3
+            // lbl_OutPath
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 101);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Output Path:";
+            this.lbl_OutPath.AutoSize = true;
+            this.lbl_OutPath.Location = new System.Drawing.Point(12, 101);
+            this.lbl_OutPath.Name = "lbl_OutPath";
+            this.lbl_OutPath.Size = new System.Drawing.Size(67, 13);
+            this.lbl_OutPath.TabIndex = 6;
+            this.lbl_OutPath.Text = "Output Path:";
             // 
-            // radioButton1
+            // rad_Multi
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(55, 7);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 7;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Multiple Files";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rad_Multi.AutoSize = true;
+            this.rad_Multi.Checked = true;
+            this.rad_Multi.Location = new System.Drawing.Point(55, 7);
+            this.rad_Multi.Name = "rad_Multi";
+            this.rad_Multi.Size = new System.Drawing.Size(85, 17);
+            this.rad_Multi.TabIndex = 7;
+            this.rad_Multi.TabStop = true;
+            this.rad_Multi.Text = "Multiple Files";
+            this.rad_Multi.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rad_Single
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(146, 7);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(73, 17);
-            this.radioButton2.TabIndex = 8;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Single File";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rad_Single.AutoSize = true;
+            this.rad_Single.Location = new System.Drawing.Point(146, 7);
+            this.rad_Single.Name = "rad_Single";
+            this.rad_Single.Size = new System.Drawing.Size(73, 17);
+            this.rad_Single.TabIndex = 8;
+            this.rad_Single.Text = "Single File";
+            this.rad_Single.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // lbl_Mode
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Mode:";
+            this.lbl_Mode.AutoSize = true;
+            this.lbl_Mode.Location = new System.Drawing.Point(12, 9);
+            this.lbl_Mode.Name = "lbl_Mode";
+            this.lbl_Mode.Size = new System.Drawing.Size(37, 13);
+            this.lbl_Mode.TabIndex = 9;
+            this.lbl_Mode.Text = "Mode:";
             // 
-            // textBox2
+            // txt_SrcFile
             // 
-            this.textBox2.Location = new System.Drawing.Point(85, 69);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(243, 20);
-            this.textBox2.TabIndex = 10;
+            this.txt_SrcFile.Location = new System.Drawing.Point(85, 69);
+            this.txt_SrcFile.Name = "txt_SrcFile";
+            this.txt_SrcFile.Size = new System.Drawing.Size(243, 20);
+            this.txt_SrcFile.TabIndex = 10;
             // 
-            // textBox3
+            // txt_OutPath
             // 
-            this.textBox3.Location = new System.Drawing.Point(85, 98);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(243, 20);
-            this.textBox3.TabIndex = 11;
+            this.txt_OutPath.Location = new System.Drawing.Point(85, 98);
+            this.txt_OutPath.Name = "txt_OutPath";
+            this.txt_OutPath.Size = new System.Drawing.Size(243, 20);
+            this.txt_OutPath.TabIndex = 11;
             // 
-            // button4
+            // btn_OutPath
             // 
-            this.button4.Location = new System.Drawing.Point(334, 96);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Browse...";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btn_OutPath.Location = new System.Drawing.Point(334, 96);
+            this.btn_OutPath.Name = "btn_OutPath";
+            this.btn_OutPath.Size = new System.Drawing.Size(75, 23);
+            this.btn_OutPath.TabIndex = 12;
+            this.btn_OutPath.Text = "Browse...";
+            this.btn_OutPath.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // chk_SingleBind
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 169);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(116, 17);
-            this.checkBox1.TabIndex = 14;
-            this.checkBox1.Text = "SingleBind Support";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chk_SingleBind.AutoSize = true;
+            this.chk_SingleBind.Location = new System.Drawing.Point(12, 169);
+            this.chk_SingleBind.Name = "chk_SingleBind";
+            this.chk_SingleBind.Size = new System.Drawing.Size(116, 17);
+            this.chk_SingleBind.TabIndex = 14;
+            this.chk_SingleBind.Text = "SingleBind Support";
+            this.chk_SingleBind.UseVisualStyleBackColor = true;
             // 
-            // checkBox2
+            // chk_MultimatCombine
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 192);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(149, 17);
-            this.checkBox2.TabIndex = 15;
-            this.checkBox2.Text = "Combine MultiMat Objects";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chk_MultimatCombine.AutoSize = true;
+            this.chk_MultimatCombine.Location = new System.Drawing.Point(12, 192);
+            this.chk_MultimatCombine.Name = "chk_MultimatCombine";
+            this.chk_MultimatCombine.Size = new System.Drawing.Size(149, 17);
+            this.chk_MultimatCombine.TabIndex = 15;
+            this.chk_MultimatCombine.Text = "Combine MultiMat Objects";
+            this.chk_MultimatCombine.UseVisualStyleBackColor = true;
             // 
-            // progressBar1
+            // progressBar
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 307);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(247, 23);
-            this.progressBar1.TabIndex = 16;
+            this.progressBar.Location = new System.Drawing.Point(12, 307);
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(247, 23);
+            this.progressBar.TabIndex = 16;
             // 
-            // checkBox3
+            // chk_TagMat
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(116, 215);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(68, 17);
-            this.checkBox3.TabIndex = 17;
-            this.checkBox3.Text = "Materials";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.chk_TagMat.AutoSize = true;
+            this.chk_TagMat.Location = new System.Drawing.Point(116, 215);
+            this.chk_TagMat.Name = "chk_TagMat";
+            this.chk_TagMat.Size = new System.Drawing.Size(68, 17);
+            this.chk_TagMat.TabIndex = 17;
+            this.chk_TagMat.Text = "Materials";
+            this.chk_TagMat.UseVisualStyleBackColor = true;
             // 
-            // checkBox4
+            // chk_TagObj
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(190, 215);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(62, 17);
-            this.checkBox4.TabIndex = 18;
-            this.checkBox4.Text = "Objects";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.chk_TagObj.AutoSize = true;
+            this.chk_TagObj.Location = new System.Drawing.Point(190, 215);
+            this.chk_TagObj.Name = "chk_TagObj";
+            this.chk_TagObj.Size = new System.Drawing.Size(62, 17);
+            this.chk_TagObj.TabIndex = 18;
+            this.chk_TagObj.Text = "Objects";
+            this.chk_TagObj.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // lbl_Tags
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 216);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 13);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Add Property Tags:";
+            this.lbl_Tags.AutoSize = true;
+            this.lbl_Tags.Location = new System.Drawing.Point(12, 216);
+            this.lbl_Tags.Name = "lbl_Tags";
+            this.lbl_Tags.Size = new System.Drawing.Size(98, 13);
+            this.lbl_Tags.TabIndex = 19;
+            this.lbl_Tags.Text = "Add Property Tags:";
             // 
-            // checkBox5
+            // chk_LightmapMatMerge
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(12, 261);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(142, 17);
-            this.checkBox5.TabIndex = 20;
-            this.checkBox5.Text = "Merge lightmap materials";
-            this.checkBox5.UseVisualStyleBackColor = true;
+            this.chk_LightmapMatMerge.AutoSize = true;
+            this.chk_LightmapMatMerge.Location = new System.Drawing.Point(12, 261);
+            this.chk_LightmapMatMerge.Name = "chk_LightmapMatMerge";
+            this.chk_LightmapMatMerge.Size = new System.Drawing.Size(142, 17);
+            this.chk_LightmapMatMerge.TabIndex = 20;
+            this.chk_LightmapMatMerge.Text = "Merge lightmap materials";
+            this.chk_LightmapMatMerge.UseVisualStyleBackColor = true;
             // 
-            // checkBox6
+            // chk_OpaAddGeo
             // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(12, 284);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(205, 17);
-            this.checkBox6.TabIndex = 21;
-            this.checkBox6.Text = "OpaAdd shader geometry workaround";
-            this.checkBox6.UseVisualStyleBackColor = true;
+            this.chk_OpaAddGeo.AutoSize = true;
+            this.chk_OpaAddGeo.Location = new System.Drawing.Point(12, 284);
+            this.chk_OpaAddGeo.Name = "chk_OpaAddGeo";
+            this.chk_OpaAddGeo.Size = new System.Drawing.Size(205, 17);
+            this.chk_OpaAddGeo.TabIndex = 21;
+            this.chk_OpaAddGeo.Text = "OpaAdd shader geometry workaround";
+            this.chk_OpaAddGeo.UseVisualStyleBackColor = true;
             // 
-            // checkBox7
+            // chk_UVOrganize
             // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(12, 238);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(144, 17);
-            this.checkBox7.TabIndex = 22;
-            this.checkBox7.Text = "Reorganize UV channels";
-            this.checkBox7.UseVisualStyleBackColor = true;
+            this.chk_UVOrganize.AutoSize = true;
+            this.chk_UVOrganize.Location = new System.Drawing.Point(12, 238);
+            this.chk_UVOrganize.Name = "chk_UVOrganize";
+            this.chk_UVOrganize.Size = new System.Drawing.Size(144, 17);
+            this.chk_UVOrganize.TabIndex = 22;
+            this.chk_UVOrganize.Text = "Reorganize UV channels";
+            this.chk_UVOrganize.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 341);
-            this.Controls.Add(this.checkBox7);
-            this.Controls.Add(this.checkBox6);
-            this.Controls.Add(this.checkBox5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.checkBox4);
-            this.Controls.Add(this.checkBox3);
-            this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.chk_UVOrganize);
+            this.Controls.Add(this.chk_OpaAddGeo);
+            this.Controls.Add(this.chk_LightmapMatMerge);
+            this.Controls.Add(this.lbl_Tags);
+            this.Controls.Add(this.chk_TagObj);
+            this.Controls.Add(this.chk_TagMat);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.chk_MultimatCombine);
+            this.Controls.Add(this.chk_SingleBind);
+            this.Controls.Add(this.btn_OutPath);
+            this.Controls.Add(this.txt_OutPath);
+            this.Controls.Add(this.txt_SrcFile);
+            this.Controls.Add(this.lbl_Mode);
+            this.Controls.Add(this.rad_Single);
+            this.Controls.Add(this.rad_Multi);
+            this.Controls.Add(this.lbl_OutPath);
+            this.Controls.Add(this.lbl_SrcFile);
+            this.Controls.Add(this.lbl__SrcPath);
+            this.Controls.Add(this.btn_Save);
+            this.Controls.Add(this.btn_SrcFile);
+            this.Controls.Add(this.txt_SrcPath);
+            this.Controls.Add(this.btn_SrcPath);
             this.Name = "MainForm";
             this.Text = "Sonic Colors Exporter";
             this.ResumeLayout(false);
@@ -289,28 +289,28 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.Button btn_SrcPath;
+        private System.Windows.Forms.TextBox txt_SrcPath;
+        private System.Windows.Forms.Button btn_SrcFile;
+        private System.Windows.Forms.Button btn_Save;
+        private System.Windows.Forms.Label lbl__SrcPath;
+        private System.Windows.Forms.Label lbl_SrcFile;
+        private System.Windows.Forms.Label lbl_OutPath;
+        private System.Windows.Forms.RadioButton rad_Multi;
+        private System.Windows.Forms.RadioButton rad_Single;
+        private System.Windows.Forms.Label lbl_Mode;
+        private System.Windows.Forms.TextBox txt_SrcFile;
+        private System.Windows.Forms.TextBox txt_OutPath;
+        private System.Windows.Forms.Button btn_OutPath;
+        private System.Windows.Forms.CheckBox chk_SingleBind;
+        private System.Windows.Forms.CheckBox chk_MultimatCombine;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.CheckBox chk_TagMat;
+        private System.Windows.Forms.CheckBox chk_TagObj;
+        private System.Windows.Forms.Label lbl_Tags;
+        private System.Windows.Forms.CheckBox chk_LightmapMatMerge;
+        private System.Windows.Forms.CheckBox chk_OpaAddGeo;
+        private System.Windows.Forms.CheckBox chk_UVOrganize;
     }
 }
 
