@@ -422,7 +422,12 @@ namespace BrawlLib.Modeling.Collada
                     writer.WriteString(" ");
                 }
 
-                Vector3 p = v.WeightedPosition;
+                Vector3 p;
+                if (singleBind != null)
+                    p = v.Position;
+                else
+                    p = v.WeightedPosition;
+
                 writer.WriteString(
                     $"{p._x.ToString(CultureInfo.InvariantCulture.NumberFormat)} {p._y.ToString(CultureInfo.InvariantCulture.NumberFormat)} {p._z.ToString(CultureInfo.InvariantCulture.NumberFormat)}");
             }
@@ -845,6 +850,11 @@ namespace BrawlLib.Modeling.Collada
 
             foreach (MDL0ObjectNode poly in model._objList)
             {
+                if (poly._matrixNode != null)
+                {
+                    continue;
+                }
+
                 List<Vertex3> verts = poly._manager._vertices;
 
                 writer.WriteStartElement("controller");
@@ -856,8 +866,8 @@ namespace BrawlLib.Modeling.Collada
 
                 //Multiply per vertex instead of per object when single bound
                 //Set bind pose matrix
-                //if (poly._singleBind != null)
-                //    m = poly._singleBind.Matrix;
+                //if (poly.SingleBind != null)
+                //    m = poly.SingleBind.Matrix;
                 //else
                 m = Matrix.Identity;
 
@@ -1142,7 +1152,7 @@ namespace BrawlLib.Modeling.Collada
             {
                 foreach (MDL0ObjectNode poly in model._objList)
                 {
-                    //if (poly._singleBind == null)
+                    if (poly.SingleBind == null)
                     foreach (DrawCall c in poly._drawCalls)
                     {
                         WritePolyInstance(c, writer);
@@ -1213,8 +1223,13 @@ namespace BrawlLib.Modeling.Collada
             }
 
             //Write single-bind geometry
-            //foreach (MDL0PolygonNode poly in bone._infPolys)
-            //    WritePolyInstance(poly, writer);
+            foreach (MDL0ObjectNode poly in bone.SingleBindObjects)
+            {
+                foreach (DrawCall c in poly._drawCalls)
+                {
+                	WritePolyInstance(c, writer);
+                }
+            }
 
             foreach (MDL0BoneNode b in bone.Children)
             {
@@ -1233,13 +1248,21 @@ namespace BrawlLib.Modeling.Collada
             writer.WriteAttributeString("name", obj.Name);
             writer.WriteAttributeString("type", "NODE");
 
-            writer.WriteStartElement("instance_controller");
-            writer.WriteAttributeString("url", $"#{obj.Name}_Controller");
+            if (obj._matrixNode != null)
+            {
+                writer.WriteStartElement("instance_geometry");
+                writer.WriteAttributeString("url", $"#{obj.Name}");
+            }
+            else
+            {
+                writer.WriteStartElement("instance_controller");
+                writer.WriteAttributeString("url", $"#{obj.Name}_Controller");
 
-            writer.WriteStartElement("skeleton");
-            writer.WriteString("#" + obj.Model._linker.BoneCache[0].Name);
-            writer.WriteEndElement();
-
+                writer.WriteStartElement("skeleton");
+                writer.WriteString("#" + obj.Model._linker.BoneCache[0].Name);
+                writer.WriteEndElement();
+            }
+            
             if (c.MaterialNode != null)
             {
                 writer.WriteStartElement("bind_material");
@@ -1259,7 +1282,7 @@ namespace BrawlLib.Modeling.Collada
                     writer.WriteEndElement();                                        //bind_vertex_input
                 }
 
-                writer.WriteEndElement(); //instance_material
+                writer.WriteEndElement(); //instance_material / instance_geometry
                 writer.WriteEndElement(); //technique_common
                 writer.WriteEndElement(); //bind_material
             }
