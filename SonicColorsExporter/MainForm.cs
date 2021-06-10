@@ -88,49 +88,68 @@ namespace SonicColorsExporter
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
+            string outpath = txt_OutPath.Text;
+
+            //Check if output path exists
+            if (!Directory.Exists(outpath))
+            {
+                MessageBox.Show("Output directory does not exist.");
+                return;
+            }
+
             //Single File Mode
             if (rad_Single.Checked)
             {
-                string inpath = txt_SrcFile.Text;
-                string outpath = txt_OutPath.Text;
+                string infile = txt_SrcFile.Text;
 
                 //Check if file exists
-                if (!File.Exists(inpath))
+                if (!File.Exists(infile))
                 {
                     MessageBox.Show("File does not exist.");
                     return;
                 }
 
-                string ext = Path.GetExtension(inpath).ToUpper();
+                processFile(infile, outpath);
 
-                if (ext == ".ARC")
-                {
-                    U8Node node = NodeFactory.FromFile(null, inpath) as U8Node;
-                    processARC(node, outpath);
-                }
-
-                if (ext == ".BRRES")
-                {
-                    BRRESNode node = NodeFactory.FromFile(null, inpath) as BRRESNode;
-                    processBRRES(node, outpath);
-                }
-
-                if (ext == ".MDL0")
-                {
-                    MDL0Node node = NodeFactory.FromFile(null, inpath) as MDL0Node;
-                    string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(inpath) + ".dae";
-                    convertMDL0toDAE(node, outfile);
-                }
             }
             else //Multi File Mode
             {
-                string path = txt_SrcPath.Text;
+                string inpath = txt_SrcPath.Text;
 
-                if (!Directory.Exists(path))
+                if (!Directory.Exists(inpath))
                 {
-                    MessageBox.Show("Directory does not exist.");
+                    MessageBox.Show("Source directory does not exist.");
                     return;
                 }
+
+                string[] files = Directory.GetFiles(inpath);
+
+                foreach (string infile in files)
+                    processFile(infile, outpath);
+            }
+        }
+
+        public void processFile(string infile, string outpath)
+        {
+            string ext = Path.GetExtension(infile).ToUpper();
+
+            if (ext == ".ARC")
+            {
+                U8Node node = NodeFactory.FromFile(null, infile) as U8Node;
+                processARC(node, outpath);
+            }
+
+            if (ext == ".BRRES")
+            {
+                BRRESNode node = NodeFactory.FromFile(null, infile) as BRRESNode;
+                processBRRES(node, outpath);
+            }
+
+            if (ext == ".MDL0")
+            {
+                MDL0Node node = NodeFactory.FromFile(null, infile) as MDL0Node;
+                string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(infile) + ".dae";
+                convertMDL0toDAE(node, outfile);
             }
         }
 
