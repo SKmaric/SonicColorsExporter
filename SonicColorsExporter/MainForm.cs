@@ -102,11 +102,23 @@ namespace SonicColorsExporter
                 }
 
                 string ext = Path.GetExtension(inpath).ToUpper();
-                string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(inpath) + ".dae";
+
+                if (ext == ".ARC")
+                {
+                    U8Node node = NodeFactory.FromFile(null, inpath) as U8Node;
+                    processARC(node, outpath);
+                }
+
+                if (ext == ".BRRES")
+                {
+                    BRRESNode node = NodeFactory.FromFile(null, inpath) as BRRESNode;
+                    processBRRES(node, outpath);
+                }
 
                 if (ext == ".MDL0")
                 {
                     MDL0Node node = NodeFactory.FromFile(null, inpath) as MDL0Node;
+                    string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(inpath) + ".dae";
                     convertMDL0toDAE(node, outfile);
                 }
             }
@@ -118,6 +130,27 @@ namespace SonicColorsExporter
                 {
                     MessageBox.Show("Directory does not exist.");
                     return;
+                }
+            }
+        }
+
+        public void processARC(U8Node arc, string outpath)
+        {
+            foreach (BRRESNode brres in arc.Children[0].Children)
+                processBRRES(brres, outpath);
+        }
+
+        public void processBRRES(BRRESNode brres, string outpath)
+        {
+            foreach (BRESGroupNode group in brres.Children)
+            {
+                if (group.Type == BRESGroupNode.BRESGroupType.Models)
+                {
+                    foreach (MDL0Node model in group.Children)
+                    {
+                        string outfile = outpath + "\\" + model.Name + ".dae";
+                        model.Export(outfile);
+                    }
                 }
             }
         }
