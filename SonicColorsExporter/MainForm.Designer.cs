@@ -50,6 +50,7 @@
             this.chk_LightmapMatMerge = new System.Windows.Forms.CheckBox();
             this.chk_OpaAddGeo = new System.Windows.Forms.CheckBox();
             this.chk_UVOrganize = new System.Windows.Forms.CheckBox();
+            this.chk_ScaleMode = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_SrcPath
@@ -256,11 +257,22 @@
             this.chk_UVOrganize.Text = "Reorganize UV channels";
             this.chk_UVOrganize.UseVisualStyleBackColor = true;
             // 
+            // chk_ScaleMode
+            // 
+            this.chk_ScaleMode.AutoSize = true;
+            this.chk_ScaleMode.Location = new System.Drawing.Point(12, 146);
+            this.chk_ScaleMode.Name = "chk_ScaleMode";
+            this.chk_ScaleMode.Size = new System.Drawing.Size(69, 17);
+            this.chk_ScaleMode.TabIndex = 23;
+            this.chk_ScaleMode.Text = "Fix Scale";
+            this.chk_ScaleMode.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 341);
+            this.Controls.Add(this.chk_ScaleMode);
             this.Controls.Add(this.chk_UVOrganize);
             this.Controls.Add(this.chk_OpaAddGeo);
             this.Controls.Add(this.chk_LightmapMatMerge);
@@ -314,6 +326,7 @@
         private System.Windows.Forms.CheckBox chk_LightmapMatMerge;
         private System.Windows.Forms.CheckBox chk_OpaAddGeo;
         private System.Windows.Forms.CheckBox chk_UVOrganize;
+        private System.Windows.Forms.CheckBox chk_ScaleMode;
     }
 }
 

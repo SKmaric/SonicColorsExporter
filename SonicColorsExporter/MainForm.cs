@@ -16,6 +16,15 @@ namespace SonicColorsExporter
 {
     public partial class MainForm : Form
     {
+        public bool scaleMode;
+        public bool singleBindMode;
+        public bool multimatCombine;
+        public bool tagMat;
+        public bool tagObj;
+        public bool UVOrganize;
+        public bool lightmapMatMerge;
+        public bool opaAddGeo;
+
         public MainForm()
         {
             InitializeComponent();
@@ -89,6 +98,16 @@ namespace SonicColorsExporter
         private void btn_Save_Click(object sender, EventArgs e)
         {
             string outpath = txt_OutPath.Text;
+
+            //Options
+            scaleMode = chk_ScaleMode.Checked;
+            singleBindMode = chk_SingleBind.Checked;
+            multimatCombine = chk_MultimatCombine.Checked;
+            tagMat = chk_TagMat.Checked;
+            tagObj = chk_TagObj.Checked;
+            UVOrganize = chk_UVOrganize.Checked;
+            lightmapMatMerge = chk_LightmapMatMerge.Checked;
+            opaAddGeo = chk_OpaAddGeo.Checked;
 
             //Check if output path exists
             if (!Directory.Exists(outpath))
@@ -174,7 +193,7 @@ namespace SonicColorsExporter
                     foreach (MDL0Node model in group.Children)
                     {
                         string outfile = outpath + "\\" + model.Name + ".dae";
-                        model.Export(outfile);
+                        convertMDL0toDAE(model, outfile);
                     }
                 }
             }
@@ -182,7 +201,7 @@ namespace SonicColorsExporter
 
         public void convertMDL0toDAE(MDL0Node model, string outfile)
         {
-            model.Export(outfile);
+            model.Export(outfile, scaleMode, singleBindMode, multimatCombine, tagMat, tagObj, UVOrganize, lightmapMatMerge, opaAddGeo);
         }
     }
 }
