@@ -136,8 +136,14 @@ namespace SonicColorsExporter
 
         public void processARC(U8Node arc, string outpath)
         {
-            foreach (BRRESNode brres in arc.Children[0].Children)
-                processBRRES(brres, outpath);
+            foreach (ARCEntryNode node in arc.Children[0].Children)
+            {
+                if (node is BRRESNode)
+                {
+                    BRRESNode brres = node as BRRESNode;
+                    processBRRES(brres, outpath);
+                }
+            }
         }
 
         public void processBRRES(BRRESNode brres, string outpath)
