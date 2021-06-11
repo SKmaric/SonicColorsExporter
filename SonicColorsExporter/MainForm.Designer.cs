@@ -51,6 +51,7 @@
             this.chk_OpaAddGeo = new System.Windows.Forms.CheckBox();
             this.chk_UVOrganize = new System.Windows.Forms.CheckBox();
             this.chk_ScaleMode = new System.Windows.Forms.CheckBox();
+            this.lbl_currentFile = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_SrcPath
@@ -174,7 +175,7 @@
             // chk_SingleBind
             // 
             this.chk_SingleBind.AutoSize = true;
-            this.chk_SingleBind.Location = new System.Drawing.Point(12, 169);
+            this.chk_SingleBind.Location = new System.Drawing.Point(87, 146);
             this.chk_SingleBind.Name = "chk_SingleBind";
             this.chk_SingleBind.Size = new System.Drawing.Size(116, 17);
             this.chk_SingleBind.TabIndex = 14;
@@ -230,7 +231,7 @@
             // chk_LightmapMatMerge
             // 
             this.chk_LightmapMatMerge.AutoSize = true;
-            this.chk_LightmapMatMerge.Location = new System.Drawing.Point(12, 261);
+            this.chk_LightmapMatMerge.Location = new System.Drawing.Point(167, 192);
             this.chk_LightmapMatMerge.Name = "chk_LightmapMatMerge";
             this.chk_LightmapMatMerge.Size = new System.Drawing.Size(142, 17);
             this.chk_LightmapMatMerge.TabIndex = 20;
@@ -240,7 +241,7 @@
             // chk_OpaAddGeo
             // 
             this.chk_OpaAddGeo.AutoSize = true;
-            this.chk_OpaAddGeo.Location = new System.Drawing.Point(12, 284);
+            this.chk_OpaAddGeo.Location = new System.Drawing.Point(12, 238);
             this.chk_OpaAddGeo.Name = "chk_OpaAddGeo";
             this.chk_OpaAddGeo.Size = new System.Drawing.Size(205, 17);
             this.chk_OpaAddGeo.TabIndex = 21;
@@ -250,7 +251,7 @@
             // chk_UVOrganize
             // 
             this.chk_UVOrganize.AutoSize = true;
-            this.chk_UVOrganize.Location = new System.Drawing.Point(12, 238);
+            this.chk_UVOrganize.Location = new System.Drawing.Point(209, 146);
             this.chk_UVOrganize.Name = "chk_UVOrganize";
             this.chk_UVOrganize.Size = new System.Drawing.Size(144, 17);
             this.chk_UVOrganize.TabIndex = 22;
@@ -267,11 +268,20 @@
             this.chk_ScaleMode.Text = "Fix Scale";
             this.chk_ScaleMode.UseVisualStyleBackColor = true;
             // 
+            // lbl_currentFile
+            // 
+            this.lbl_currentFile.AutoSize = true;
+            this.lbl_currentFile.Location = new System.Drawing.Point(12, 290);
+            this.lbl_currentFile.Name = "lbl_currentFile";
+            this.lbl_currentFile.Size = new System.Drawing.Size(0, 13);
+            this.lbl_currentFile.TabIndex = 24;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 341);
+            this.Controls.Add(this.lbl_currentFile);
             this.Controls.Add(this.chk_ScaleMode);
             this.Controls.Add(this.chk_UVOrganize);
             this.Controls.Add(this.chk_OpaAddGeo);
@@ -327,6 +337,7 @@
         private System.Windows.Forms.CheckBox chk_OpaAddGeo;
         private System.Windows.Forms.CheckBox chk_UVOrganize;
         private System.Windows.Forms.CheckBox chk_ScaleMode;
+        private System.Windows.Forms.Label lbl_currentFile;
     }
 }
 
