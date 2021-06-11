@@ -83,7 +83,7 @@
             // 
             // btn_Save
             // 
-            this.btn_Save.Location = new System.Drawing.Point(265, 263);
+            this.btn_Save.Location = new System.Drawing.Point(265, 189);
             this.btn_Save.Name = "btn_Save";
             this.btn_Save.Size = new System.Drawing.Size(144, 67);
             this.btn_Save.TabIndex = 3;
@@ -175,6 +175,8 @@
             // chk_SingleBind
             // 
             this.chk_SingleBind.AutoSize = true;
+            this.chk_SingleBind.Checked = true;
+            this.chk_SingleBind.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_SingleBind.Location = new System.Drawing.Point(87, 146);
             this.chk_SingleBind.Name = "chk_SingleBind";
             this.chk_SingleBind.Size = new System.Drawing.Size(116, 17);
@@ -185,16 +187,17 @@
             // chk_MultimatCombine
             // 
             this.chk_MultimatCombine.AutoSize = true;
-            this.chk_MultimatCombine.Location = new System.Drawing.Point(12, 192);
+            this.chk_MultimatCombine.Location = new System.Drawing.Point(12, 169);
             this.chk_MultimatCombine.Name = "chk_MultimatCombine";
             this.chk_MultimatCombine.Size = new System.Drawing.Size(149, 17);
             this.chk_MultimatCombine.TabIndex = 15;
             this.chk_MultimatCombine.Text = "Combine MultiMat Objects";
             this.chk_MultimatCombine.UseVisualStyleBackColor = true;
+            this.chk_MultimatCombine.Visible = false;
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 307);
+            this.progressBar.Location = new System.Drawing.Point(12, 233);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(247, 23);
             this.progressBar.TabIndex = 16;
@@ -202,7 +205,9 @@
             // chk_TagMat
             // 
             this.chk_TagMat.AutoSize = true;
-            this.chk_TagMat.Location = new System.Drawing.Point(116, 215);
+            this.chk_TagMat.Checked = true;
+            this.chk_TagMat.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_TagMat.Location = new System.Drawing.Point(116, 192);
             this.chk_TagMat.Name = "chk_TagMat";
             this.chk_TagMat.Size = new System.Drawing.Size(68, 17);
             this.chk_TagMat.TabIndex = 17;
@@ -212,7 +217,9 @@
             // chk_TagObj
             // 
             this.chk_TagObj.AutoSize = true;
-            this.chk_TagObj.Location = new System.Drawing.Point(190, 215);
+            this.chk_TagObj.Checked = true;
+            this.chk_TagObj.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_TagObj.Location = new System.Drawing.Point(190, 192);
             this.chk_TagObj.Name = "chk_TagObj";
             this.chk_TagObj.Size = new System.Drawing.Size(62, 17);
             this.chk_TagObj.TabIndex = 18;
@@ -222,7 +229,7 @@
             // lbl_Tags
             // 
             this.lbl_Tags.AutoSize = true;
-            this.lbl_Tags.Location = new System.Drawing.Point(12, 216);
+            this.lbl_Tags.Location = new System.Drawing.Point(12, 193);
             this.lbl_Tags.Name = "lbl_Tags";
             this.lbl_Tags.Size = new System.Drawing.Size(98, 13);
             this.lbl_Tags.TabIndex = 19;
@@ -231,26 +238,30 @@
             // chk_LightmapMatMerge
             // 
             this.chk_LightmapMatMerge.AutoSize = true;
-            this.chk_LightmapMatMerge.Location = new System.Drawing.Point(167, 192);
+            this.chk_LightmapMatMerge.Location = new System.Drawing.Point(167, 169);
             this.chk_LightmapMatMerge.Name = "chk_LightmapMatMerge";
             this.chk_LightmapMatMerge.Size = new System.Drawing.Size(142, 17);
             this.chk_LightmapMatMerge.TabIndex = 20;
             this.chk_LightmapMatMerge.Text = "Merge lightmap materials";
             this.chk_LightmapMatMerge.UseVisualStyleBackColor = true;
+            this.chk_LightmapMatMerge.Visible = false;
             // 
             // chk_OpaAddGeo
             // 
             this.chk_OpaAddGeo.AutoSize = true;
-            this.chk_OpaAddGeo.Location = new System.Drawing.Point(12, 238);
+            this.chk_OpaAddGeo.Location = new System.Drawing.Point(12, 215);
             this.chk_OpaAddGeo.Name = "chk_OpaAddGeo";
             this.chk_OpaAddGeo.Size = new System.Drawing.Size(205, 17);
             this.chk_OpaAddGeo.TabIndex = 21;
             this.chk_OpaAddGeo.Text = "OpaAdd shader geometry workaround";
             this.chk_OpaAddGeo.UseVisualStyleBackColor = true;
+            this.chk_OpaAddGeo.Visible = false;
             // 
             // chk_UVOrganize
             // 
             this.chk_UVOrganize.AutoSize = true;
+            this.chk_UVOrganize.Checked = true;
+            this.chk_UVOrganize.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_UVOrganize.Location = new System.Drawing.Point(209, 146);
             this.chk_UVOrganize.Name = "chk_UVOrganize";
             this.chk_UVOrganize.Size = new System.Drawing.Size(144, 17);
@@ -261,6 +272,8 @@
             // chk_ScaleMode
             // 
             this.chk_ScaleMode.AutoSize = true;
+            this.chk_ScaleMode.Checked = true;
+            this.chk_ScaleMode.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chk_ScaleMode.Location = new System.Drawing.Point(12, 146);
             this.chk_ScaleMode.Name = "chk_ScaleMode";
             this.chk_ScaleMode.Size = new System.Drawing.Size(69, 17);
@@ -271,16 +284,18 @@
             // lbl_currentFile
             // 
             this.lbl_currentFile.AutoSize = true;
-            this.lbl_currentFile.Location = new System.Drawing.Point(12, 290);
+            this.lbl_currentFile.Location = new System.Drawing.Point(211, 216);
             this.lbl_currentFile.Name = "lbl_currentFile";
-            this.lbl_currentFile.Size = new System.Drawing.Size(0, 13);
+            this.lbl_currentFile.Size = new System.Drawing.Size(48, 13);
             this.lbl_currentFile.TabIndex = 24;
+            this.lbl_currentFile.Text = "Progress";
+            this.lbl_currentFile.Visible = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 341);
+            this.ClientSize = new System.Drawing.Size(421, 263);
             this.Controls.Add(this.lbl_currentFile);
             this.Controls.Add(this.chk_ScaleMode);
             this.Controls.Add(this.chk_UVOrganize);
