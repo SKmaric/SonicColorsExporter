@@ -128,7 +128,16 @@ namespace SonicColorsExporter
                     return;
                 }
 
+                progressBar.Value = 0;
+                progressBar.Maximum = 1;
+
+                //lbl_currentFile.Text = Path.GetFileName(infile);
                 processFile(infile, outpath);
+
+                progressBar.Value = 1;
+
+                MessageBox.Show("Finished. Be sure to convert to FBX using FbxConverterUI before importing to Max.");
+                return;
 
             }
             else //Multi File Mode
@@ -143,8 +152,18 @@ namespace SonicColorsExporter
 
                 string[] files = Directory.GetFiles(inpath);
 
+                progressBar.Value = 0;
+                progressBar.Maximum = files.Length;
+
                 foreach (string infile in files)
+                {
+                    //lbl_currentFile.Text = Path.GetFileName(infile);
                     processFile(infile, outpath);
+                    progressBar.Value++;
+                }
+
+                MessageBox.Show("Finished. Be sure to convert to FBX using FbxConverterUI before importing to Max.");
+                return;
             }
         }
 
