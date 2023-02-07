@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using BrawlLib.Modeling;
 using BrawlLib.SSBB.ResourceNodes;
+using BrawlLib.Modeling.Collada;
 using HedgeLib.Headers;
 using HedgeLib.Materials;
 using HedgeLib.Textures;
@@ -17,9 +18,17 @@ namespace SonicColorsExporter.Model
 {
     internal class MDL0Handler
     {
-        public static void convertMDL0toDAE(MDL0Node model, string outfile, SettingsFlags flags)
+        public static void convertMDL0toDAE(MDL0Node model, string outPath, SettingsFlags flags)
         {
-            model.Export(outfile, flags.scaleMode, flags.singleBindMode, flags.multimatCombine, flags.tagMat, flags.tagObj, flags.UVOrganize, flags.lightmapMatMerge, flags.opaAddGeo);
+            if (outPath.ToUpper().EndsWith(".DAE"))
+            {
+                ColladaExportColors.Serialize(model, outPath, flags.scaleMode, flags.singleBindMode, flags.multimatCombine, flags.tagMat, flags.tagObj, flags.UVOrganize, flags.lightmapMatMerge, flags.opaAddGeo);
+            }
+            else
+            {
+                var raw = (BRESEntryNode)model;
+                raw.Export(outPath);
+            }
         }
 
         #region Materials
