@@ -1,3 +1,6 @@
 [submodule "BrawlCrate"]
 	path = BrawlCrate
 	url = https://github.com/SKmaric/BrawlCrate
+[submodule "HedgeLib"]
+	path = HedgeLib
+	url = https://github.com/SKmaric/HedgeLib
