@@ -14,7 +14,7 @@ using HedgeLib.Textures;
 using HedgeLib.IO;
 using HedgeLib.Exceptions;
 
-namespace SonicColorsExporter.Model
+namespace SonicColorsExporter
 {
     internal class MDL0Handler
     {

@@ -45,10 +45,12 @@ namespace SonicColorsExporter
             var ofd = new OpenFileDialog()
             {
                 Title = "Open File...",
-                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0)|*.arc;*.brres;*.mdl0|" +
+                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0;*.scn0;*.srt0)|*.arc;*.brres;*.mdl0;*.scn0;*.srt0|" +
                 "U8 ARC File Archive (*.arc)|*.arc|" +
                 "NW4R Resource Pack (*.brres)|*.brres|" +
                 "NW4R Model (*.mdl0)|*.mdl0|" +
+                "SCN0 Settings (*.scn0)|*.scn0|" +
+                "SRT0 UV Animation (*.srt0)|*.srt0|" +
                 "All files (*.*)|*.*"
             };
 

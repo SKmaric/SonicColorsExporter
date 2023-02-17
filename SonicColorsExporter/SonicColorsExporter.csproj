@@ -63,9 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimNodeHandler.cs" />
     <Compile Include="Gismo\GISMHandler.cs" />
     <Compile Include="Model\MDL0Handler.cs" />
     <Compile Include="Particle\REFFHandler.cs" />
+    <Compile Include="UVAnim\SRT0Handler.cs" />
+    <Compile Include="Scene\SCN0Handler.cs" />
     <Compile Include="SettingsFlags.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

@@ -12,9 +12,6 @@ using HedgeLib.Materials;
 using HedgeLib.Textures;
 using HedgeLib.IO;
 using HedgeLib.Exceptions;
-using SonicColorsExporter.Gismo;
-using SonicColorsExporter.Model;
-using SonicColorsExporter.Particle;
 
 namespace SonicColorsExporter
 {
@@ -52,6 +49,18 @@ namespace SonicColorsExporter
                 MDL0Node node = NodeFactory.FromFile(null, infile) as MDL0Node;
                 string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(infile) + ".dae";
                 MDL0Handler.convertMDL0toDAE(node, outfile, flags);
+            }
+
+            if (ext == ".SCN0")
+            {
+                SCN0Node node = NodeFactory.FromFile(null, infile) as SCN0Node;
+                SCN0Handler.processSCN0(node, outpath, flags);
+            }
+
+            if (ext == ".SRT0")
+            {
+                SRT0Node node = NodeFactory.FromFile(null, infile) as SRT0Node;
+                SRT0Handler.processSRT0(node, outpath, flags);
             }
         }
 
