@@ -10,7 +10,7 @@ using HedgeLib.Headers;
 using HedgeLib.IO;
 using HedgeLib.Exceptions;
 
-namespace SonicColorsExporter.Gismo
+namespace SonicColorsExporter
 {
     internal class GISMHandler
     {

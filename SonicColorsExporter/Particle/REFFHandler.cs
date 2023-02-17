@@ -13,7 +13,7 @@ using HedgeLib.Textures;
 using HedgeLib.IO;
 using HedgeLib.Exceptions;
 
-namespace SonicColorsExporter.Particle
+namespace SonicColorsExporter
 {
     internal class REFFHandler
     {
