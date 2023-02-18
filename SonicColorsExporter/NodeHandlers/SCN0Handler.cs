@@ -23,15 +23,43 @@ namespace SonicColorsExporter
                 {
                     foreach (SCN0CameraNode node in group.Children)
                     {
-                        string outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".cam-anim.xml";
+                        string outfile;
+
                         CameraAnimation animation = ConvertCamera(node, flags);
 
-                        animation.ExportXML(outfile);
-
-                        //animation.Save(outfile);
+                        if (flags.AnimsXML)
+                        {
+                            outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".cam-anim.xml";
+                            animation.ExportXML(outfile);
+                        }
+                        else
+                        {
+                            outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".cam-anim";
+                            animation.Save(outfile);
+                        }
                     }
                 }
+                if (group.Name.Contains("Lights"))
+                {
+                    /// WIP
+                    //foreach (SCN0LightNode node in group.Children)
+                    //{
+                    //    string outfile;
 
+                    //    LightAnimation animation = ConvertLight(node, flags);
+
+                    //    if (flags.AnimsXML)
+                    //    {
+                    //        outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".lit-anim.xml";
+                    //        animation.ExportXML(outfile);
+                    //    }
+                    //    else
+                    //    {
+                    //        outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".lit-anim";
+                    //        animation.Save(outfile);
+                    //    }
+                    //}
+                }
             }
         }
 
@@ -52,7 +80,7 @@ namespace SonicColorsExporter
             anim.Name = node.Name;
             anim.FPS = 60f;
             anim.StartTime = 0;
-            anim.EndTime = node.FrameCount;
+            anim.EndTime = node.FrameCount - 1;
 
             anim.Flag1 = 1;
             anim.Flag2 = 0;
