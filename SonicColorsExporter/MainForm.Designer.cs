@@ -52,6 +52,7 @@
             this.chk_UVOrganize = new System.Windows.Forms.CheckBox();
             this.chk_ScaleMode = new System.Windows.Forms.CheckBox();
             this.lbl_currentFile = new System.Windows.Forms.Label();
+            this.chk_AnimAsXML = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_SrcPath
@@ -291,11 +292,22 @@
             this.lbl_currentFile.Text = "Progress";
             this.lbl_currentFile.Visible = false;
             // 
+            // chk_AnimAsXML
+            // 
+            this.chk_AnimAsXML.AutoSize = true;
+            this.chk_AnimAsXML.Location = new System.Drawing.Point(12, 124);
+            this.chk_AnimAsXML.Name = "chk_AnimAsXML";
+            this.chk_AnimAsXML.Size = new System.Drawing.Size(120, 17);
+            this.chk_AnimAsXML.TabIndex = 25;
+            this.chk_AnimAsXML.Text = "Save anims as XML";
+            this.chk_AnimAsXML.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 263);
+            this.Controls.Add(this.chk_AnimAsXML);
             this.Controls.Add(this.lbl_currentFile);
             this.Controls.Add(this.chk_ScaleMode);
             this.Controls.Add(this.chk_UVOrganize);
@@ -353,6 +365,7 @@
         private System.Windows.Forms.CheckBox chk_UVOrganize;
         private System.Windows.Forms.CheckBox chk_ScaleMode;
         private System.Windows.Forms.Label lbl_currentFile;
+        private System.Windows.Forms.CheckBox chk_AnimAsXML;
     }
 }
 

@@ -18,8 +18,6 @@ namespace SonicColorsExporter
     internal class REFFHandler
     {
         #region Particle Effects
-        float cFactor;
-        float mFactor;
 
         public static List<String> ReadEffectNames(ExtendedBinaryReader reader)
         {
@@ -49,22 +47,20 @@ namespace SonicColorsExporter
             return effNames;
         }
 
-        public void processREFF(REFFNode reff, string outpath, List<string> particleList, SettingsFlags flags)
+        public static void processREFF(REFFNode reff, string outpath, List<string> particleList, SettingsFlags flags)
         {
-            cFactor = flags.cFactor;
-            mFactor = flags.mFactor;
             foreach (REFFEntryNode node in reff.Children)
             {
                 if (particleList.Contains(node.Name))
                 {
                     string outfile = outpath + "\\" + node.Name + ".gte.xml";
 
-                    writeGTEXML(node, outfile);
+                    writeGTEXML(node, outfile, flags);
                 }
             }
         }
 
-        private void writeGTEXML(REFFEntryNode node, string outfile)
+        private static void writeGTEXML(REFFEntryNode node, string outfile, SettingsFlags flags)
         {
             REFFEmitterNode9 emitter = node.Children[0] as REFFEmitterNode9;
             REFFParticleNode particle = node.Children[1] as REFFParticleNode;
@@ -132,19 +128,19 @@ namespace SonicColorsExporter
                     writer.WriteAttributeString("Value", "1"); //Loop
                     writer.WriteEndElement();
 
-                    writeEmitter(emitter, particle, writer, 0);
+                    writeEmitter(emitter, particle, writer, 0, flags);
                     int childNumber = 1;
                     foreach (REFFEntryNode child in effectChildren)
                     {
-                        writeEmitter(child.Children[0] as REFFEmitterNode9, child.Children[1] as REFFParticleNode, writer, childNumber);
+                        writeEmitter(child.Children[0] as REFFEmitterNode9, child.Children[1] as REFFParticleNode, writer, childNumber, flags);
                         childNumber++;
                     }
 
-                    writeParticle(particle, emitter, writer, 0);
+                    writeParticle(particle, emitter, writer, 0, flags);
                     childNumber = 1;
                     foreach (REFFEntryNode child in effectChildren)
                     {
-                        writeParticle(child.Children[1] as REFFParticleNode, child.Children[0] as REFFEmitterNode9, writer, childNumber);
+                        writeParticle(child.Children[1] as REFFParticleNode, child.Children[0] as REFFEmitterNode9, writer, childNumber, flags);
                         childNumber++;
                     }
 
@@ -154,7 +150,7 @@ namespace SonicColorsExporter
             }
         }
 
-        private void writeEmitter(REFFEmitterNode9 emitter, REFFParticleNode particle, XmlWriter writer, int id)
+        private static void writeEmitter(REFFEmitterNode9 emitter, REFFParticleNode particle, XmlWriter writer, int id, SettingsFlags flags)
         {
             writer.WriteStartElement("Emitter");
             writer.WriteAttributeString("Id", id.ToString());
@@ -179,9 +175,9 @@ namespace SonicColorsExporter
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("Translation");
-                writer.WriteAttributeString("X", (emitter.Translate._x * mFactor).ToString());
-                writer.WriteAttributeString("Y", (emitter.Translate._y * mFactor).ToString());
-                writer.WriteAttributeString("Z", (emitter.Translate._z * mFactor).ToString());
+                writer.WriteAttributeString("X", (emitter.Translate._x * flags.mFactor).ToString());
+                writer.WriteAttributeString("Y", (emitter.Translate._y * flags.mFactor).ToString());
+                writer.WriteAttributeString("Z", (emitter.Translate._z * flags.mFactor).ToString());
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("Rotation");
@@ -247,7 +243,7 @@ namespace SonicColorsExporter
             writer.WriteEndElement();
         }
 
-        private void writeParticle(REFFParticleNode particle, REFFEmitterNode9 emitter, XmlWriter writer, int id)
+        private static void writeParticle(REFFParticleNode particle, REFFEmitterNode9 emitter, XmlWriter writer, int id, SettingsFlags flags)
         {
             writer.WriteStartElement("Particle");
             writer.WriteAttributeString("Id", id.ToString());
@@ -272,8 +268,8 @@ namespace SonicColorsExporter
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("Size");
-                writer.WriteAttributeString("X", (particle.Size.X * mFactor).ToString());
-                writer.WriteAttributeString("Y", (particle.Size.Y * mFactor).ToString());
+                writer.WriteAttributeString("X", (particle.Size.X * flags.mFactor).ToString());
+                writer.WriteAttributeString("Y", (particle.Size.Y * flags.mFactor).ToString());
                 writer.WriteAttributeString("Z", "1");
                 writer.WriteEndElement();
 
@@ -370,10 +366,10 @@ namespace SonicColorsExporter
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("Color");
-                writer.WriteAttributeString("R", (particle.Color1Primary.R * cFactor).ToString());
-                writer.WriteAttributeString("G", (particle.Color1Primary.G * cFactor).ToString());
-                writer.WriteAttributeString("B", (particle.Color1Primary.B * cFactor).ToString());
-                writer.WriteAttributeString("A", (particle.Color1Primary.A * cFactor).ToString());
+                writer.WriteAttributeString("R", (particle.Color1Primary.R * flags.cFactor).ToString());
+                writer.WriteAttributeString("G", (particle.Color1Primary.G * flags.cFactor).ToString());
+                writer.WriteAttributeString("B", (particle.Color1Primary.B * flags.cFactor).ToString());
+                writer.WriteAttributeString("A", (particle.Color1Primary.A * flags.cFactor).ToString());
                 writer.WriteEndElement();
 
                 writer.WriteStartElement("TextureIndex");
@@ -423,7 +419,7 @@ namespace SonicColorsExporter
             writer.WriteEndElement();
         }
 
-        private void writeAnimation(REFFAnimationNode animation, XmlWriter writer, string type)
+        private static void writeAnimation(REFFAnimationNode animation, XmlWriter writer, string type)
         {
             writer.WriteStartElement("Animation");
             writer.WriteAttributeString("Type", type);//To change to correct names

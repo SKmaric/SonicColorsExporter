@@ -68,7 +68,7 @@ namespace SonicColorsExporter
             return gismoList;
         }
 
-        private void writeGismObjectProd(List<CLRGism> gismoList, string outfile)
+        public static void writeGismObjectProd(List<CLRGism> gismoList, string outfile)
         {
             XmlWriterSettings _writerSettings = new XmlWriterSettings
             {

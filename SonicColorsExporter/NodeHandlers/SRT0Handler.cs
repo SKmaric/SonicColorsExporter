@@ -21,29 +21,36 @@ namespace SonicColorsExporter
             {
                 foreach (SRT0TextureNode node in mat.Children)
                 {
+                    string outfile;
+
                     // Parse texture/map ID from name
                     int i = int.Parse(new String(node.Name.Where(Char.IsDigit).ToArray()));
-
-                    string outfile = outpath + "\\" + mat.Name + "-" + i.ToString("D4") + ".uv-anim.xml";
 
                     UVAnimation animation = ConvertUVAnim(node, flags);
                     animation.MaterialName = mat.Name;
                     animation.MapName = mat.Name + "-" + i.ToString("D4");
 
-                    animation.ExportXML(outfile);
-
-                    //writeUVXML(node, mat.Name, i, outfile, flags);
+                    if (flags.AnimsXML)
+                    {
+                        outfile = outpath + "\\" + animation.MapName + ".uv-anim.xml";
+                        animation.ExportXML(outfile);
+                    }
+                    else
+                    {
+                        outfile = outpath + "\\" + animation.MapName + ".uv-anim";
+                        animation.Save(outfile);
+                    }
                 }
             }
         }
 
         private static UVAnimation ConvertUVAnim(SRT0TextureNode node, SettingsFlags flags)
         {
-            UVAnimation camera = new UVAnimation();
+            UVAnimation animation = new UVAnimation();
 
-            camera.Animations.Add(ConvertAnim(node, flags));
+            animation.Animations.Add(ConvertAnim(node, flags));
 
-            return camera;
+            return animation;
         }
 
         private static GensAnimation.Animation ConvertAnim(SRT0TextureNode node, SettingsFlags flags)
@@ -54,7 +61,7 @@ namespace SonicColorsExporter
             anim.Name = node.Name;
             anim.FPS = 60f;
             anim.StartTime = 0;
-            anim.EndTime = node.FrameCount;
+            anim.EndTime = node.FrameCount - 1;
 
             int id = 0;
             foreach (var set in node.KeyArrays)

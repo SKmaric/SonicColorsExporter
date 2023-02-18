@@ -16,6 +16,7 @@ namespace SonicColorsExporter
         public bool UVOrganize;
         public bool lightmapMatMerge;
         public bool opaAddGeo;
+        public bool AnimsXML;
         public float cFactor = 1.0f / 255.0f;
         public float mFactor = 1.0f / 10.0f;
     }

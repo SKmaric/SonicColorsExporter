@@ -63,12 +63,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimNodeHandler.cs" />
-    <Compile Include="Gismo\GISMHandler.cs" />
-    <Compile Include="Model\MDL0Handler.cs" />
-    <Compile Include="Particle\REFFHandler.cs" />
-    <Compile Include="UVAnim\SRT0Handler.cs" />
-    <Compile Include="Scene\SCN0Handler.cs" />
+    <Compile Include="NodeHandlers\AnimNodeHandler.cs" />
+    <Compile Include="NodeHandlers\GISMHandler.cs" />
+    <Compile Include="NodeHandlers\MDL0Handler.cs" />
+    <Compile Include="NodeHandlers\REFFHandler.cs" />
+    <Compile Include="NodeHandlers\PAT0Handler.cs" />
+    <Compile Include="NodeHandlers\CLR0Handler.cs" />
+    <Compile Include="NodeHandlers\VIS0Handler.cs" />
+    <Compile Include="NodeHandlers\SRT0Handler.cs" />
+    <Compile Include="NodeHandlers\SCN0Handler.cs" />
     <Compile Include="SettingsFlags.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
