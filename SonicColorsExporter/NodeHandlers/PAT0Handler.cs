@@ -48,6 +48,8 @@ namespace SonicColorsExporter
         {
             PatternAnimation animation = new PatternAnimation();
 
+            animation.Header.RootNodeType = 1;
+
             animation.Animations.Add(ConvertAnim(node, flags));
 
             return animation;

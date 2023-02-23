@@ -41,6 +41,8 @@ namespace SonicColorsExporter
         {
             MaterialAnimation animation = new MaterialAnimation();
 
+            animation.Header.RootNodeType = 2;
+
             animation.Animations.Add(ConvertAnim(node, flags));
 
             return animation;

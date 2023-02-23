@@ -65,11 +65,13 @@ namespace SonicColorsExporter
 
         public static CameraAnimation ConvertCamera(SCN0CameraNode node, SettingsFlags flags)
         {
-            CameraAnimation camera = new CameraAnimation();
+            CameraAnimation animation = new CameraAnimation();
 
-            camera.Animations.Add(ConvertAnim(node, flags));
+            animation.Header.RootNodeType = 2;
 
-            return camera;
+            animation.Animations.Add(ConvertAnim(node, flags));
+
+            return animation;
         }
 
         public static GensAnimation.Animation ConvertAnim(SCN0CameraNode node, SettingsFlags flags)
@@ -82,7 +84,10 @@ namespace SonicColorsExporter
             anim.StartTime = 0;
             anim.EndTime = node.FrameCount - 1;
 
-            anim.Flag1 = 1;
+            if (node.Type == BrawlLib.SSBB.Types.SCN0CameraType.Aim)
+                anim.Flag1 = 1;
+            else
+                anim.Flag1 = 0;
             anim.Flag2 = 0;
             anim.Flag3 = 0;
             anim.Flag4 = 0;
