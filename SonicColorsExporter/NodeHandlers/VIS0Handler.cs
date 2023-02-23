@@ -40,6 +40,8 @@ namespace SonicColorsExporter
         {
             VisibilityAnimation animation = new VisibilityAnimation();
 
+            animation.Header.RootNodeType = 1;
+
             foreach (VIS0EntryNode node in vis0.Children)
             {
                 var anim = ConvertAnim(node, flags);

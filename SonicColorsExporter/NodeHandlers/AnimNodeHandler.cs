@@ -36,7 +36,6 @@ namespace SonicColorsExporter
                     if (prevValue == value && value == nextValue)
                         continue;
                 }
-
                 keyframes.Add(ConvertKeyframe(i, value));
             }
             // Remove sets with no animation data

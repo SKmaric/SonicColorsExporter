@@ -45,7 +45,7 @@ namespace SonicColorsExporter
             var ofd = new OpenFileDialog()
             {
                 Title = "Open File...",
-                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0)|*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0|" +
+                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff)|*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff|" +
                 "U8 ARC File Archive (*.arc)|*.arc|" +
                 "NW4R Resource Pack (*.brres)|*.brres|" +
                 "NW4R Model (*.mdl0)|*.mdl0|" +
@@ -54,6 +54,7 @@ namespace SonicColorsExporter
                 "VIS0 Animation (*.vis0)|*.vis0|" +
                 "PAT0 Animation (*.pat0)|*.pat0|" +
                 "CLR0 Animation (*.clr0)|*.clr0|" +
+                "BREFF Effect Resource (*.breff)|*.breff|" +
                 "All files (*.*)|*.*"
             };
 
@@ -105,6 +106,7 @@ namespace SonicColorsExporter
             flags.lightmapMatMerge = chk_LightmapMatMerge.Checked;
             flags.opaAddGeo = chk_OpaAddGeo.Checked;
             flags.AnimsXML = chk_AnimAsXML.Checked;
+            flags.flipXUV = true;
 
             //Check if output path exists
             if (!Directory.Exists(outpath))

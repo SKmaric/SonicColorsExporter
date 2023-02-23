@@ -73,6 +73,11 @@ namespace SonicColorsExporter
                 CLR0Node node = NodeFactory.FromFile(null, infile) as CLR0Node;
                 CLR0Handler.processCLR0(node, outpath, flags);
             }
+            if (ext == ".BREFF")
+            {
+                REFFNode node = NodeFactory.FromFile(null, infile) as REFFNode;
+                REFFHandler.processREFF(node, outpath, new List<string>(), flags);
+            }
         }
 
         public static void ProcessARC(U8Node arc, string outpath, SettingsFlags flags)
