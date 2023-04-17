@@ -15,7 +15,7 @@ namespace SonicColorsExporter
 {
     internal class AnimNodeHandler
     {
-        public virtual GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags)
+        public virtual GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags, int startTime = 0, int endTime = 0)
         {
             GensAnimation.KeyframeSet keyframes = new GensAnimation.KeyframeSet();
 
