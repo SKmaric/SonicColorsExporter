@@ -32,12 +32,12 @@ namespace SonicColorsExporter
 
                     if (flags.AnimsXML)
                     {
-                        outfile = outpath + "\\" + animation.MapName + ".uv-anim.xml";
+                        outfile = outpath + "\\" + srt0.Name + "_" + animation.MapName + ".uv-anim.xml";
                         animation.ExportXML(outfile);
                     }
                     else
                     {
-                        outfile = outpath + "\\" + animation.MapName + ".uv-anim";
+                        outfile = outpath + "\\" + srt0.Name + "_" + animation.MapName + ".uv-anim";
                         animation.Save(outfile);
                     }
                 }
@@ -77,7 +77,7 @@ namespace SonicColorsExporter
             return anim;
         }
 
-        public override GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags)
+        public override GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags, int startTime = 0, int endTime = 0)
         {
             switch (id)
             {

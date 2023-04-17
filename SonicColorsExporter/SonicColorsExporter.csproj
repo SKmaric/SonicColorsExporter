@@ -52,6 +52,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NodeHandlers\AnimNodeHandler.cs" />
+    <Compile Include="NodeHandlers\CHR0Handler.cs" />
     <Compile Include="NodeHandlers\GISMHandler.cs" />
     <Compile Include="NodeHandlers\MDL0Handler.cs" />
     <Compile Include="NodeHandlers\REFFHandler.cs" />

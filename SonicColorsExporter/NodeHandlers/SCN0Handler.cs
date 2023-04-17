@@ -69,20 +69,74 @@ namespace SonicColorsExporter
 
             animation.Header.RootNodeType = 2;
 
-            animation.Animations.Add(ConvertAnim(node, flags));
+            bool splitCameraShots = true;
+
+            if (splitCameraShots)
+            {
+                List<BrawlLib.Wii.Animations.KeyframeEntry> KeyframeList = new List<BrawlLib.Wii.Animations.KeyframeEntry>();
+                List<int> camStartTimes = new List<int>();
+
+                // Detect camera shots based on FOV keyframes
+                var FOVFrames = node.KeyArrays[13];
+
+                bool loopExit = false;
+                var curKeyFrame = FOVFrames.GetKeyframe(0);
+                while (curKeyFrame._index >= 0)
+                {
+                    KeyframeList.Add(curKeyFrame);
+
+                    if (curKeyFrame._next._index < 0)
+                        break;
+
+                    curKeyFrame = curKeyFrame._next;
+                }
+
+                for (int i = 0; i < KeyframeList.Count; i++)
+                {
+                    // Add total start and end times
+                    if (i == 0 || i == KeyframeList.Count - 1)
+                    {
+                        camStartTimes.Add(KeyframeList[i]._index);
+                        continue;
+                    }
+
+                    if (KeyframeList[i]._index == (KeyframeList[i-1]._index + 2) && !(KeyframeList[i]._index == (KeyframeList[i - 2]._index + 4)))
+                    {
+                        camStartTimes.Add(KeyframeList[i]._index);
+                        continue;
+                    }
+                }
+
+                for (int i = 0; i < camStartTimes.Count - 1; i++)
+                {
+                    bool lastCamera = false;
+                    if (i == camStartTimes.Count - 2)
+                        lastCamera = true;
+
+                    animation.Animations.Add(ConvertAnim(node, flags, i+1, lastCamera, camStartTimes[i], camStartTimes[i+1]));
+                }
+            }
+            else
+            {
+                animation.Animations.Add(ConvertAnim(node, flags, 0, true, 0, node.FrameCount - 1));
+            }
 
             return animation;
         }
 
-        public static GensAnimation.Animation ConvertAnim(SCN0CameraNode node, SettingsFlags flags)
+        public static GensAnimation.Animation ConvertAnim(SCN0CameraNode node, SettingsFlags flags, int camID = 0, bool lastCamera = true, int startTime = 0, int endTime = 0)
         {
             SCN0Handler sCN0Handler = new SCN0Handler();
             GensAnimation.Animation anim = new GensAnimation.Animation();
 
-            anim.Name = node.Name;
+            anim.Name = node.Name; // Default name if not splitting takes
+            if (camID > 0)
+            {
+                anim.Name = "Camera_" + camID.ToString("00");
+            }
             anim.FPS = 60f;
-            anim.StartTime = 0;
-            anim.EndTime = node.FrameCount - 1;
+            anim.StartTime = startTime;
+            anim.EndTime = endTime;
 
             if (node.Type == BrawlLib.SSBB.Types.SCN0CameraType.Aim)
                 anim.Flag1 = 1;
@@ -92,34 +146,63 @@ namespace SonicColorsExporter
             anim.Flag3 = 0;
             anim.Flag4 = 0;
 
-            anim.Position = new Vector3(node.PosX.GetFrameValue(0) * flags.mFactor,
-                node.PosY.GetFrameValue(0) * flags.mFactor,
-                node.PosZ.GetFrameValue(0) * flags.mFactor);
-            anim.Rotation = new Vector3(node.RotX.GetFrameValue(0) * flags.mFactor,
-                node.RotY.GetFrameValue(0) * flags.mFactor,
-                node.RotZ.GetFrameValue(0) * flags.mFactor);
-            anim.Aim = new Vector3(node.AimX.GetFrameValue(0) * flags.mFactor,
-                node.AimY.GetFrameValue(0) * flags.mFactor,
-                node.AimZ.GetFrameValue(0) * flags.mFactor);
-            anim.Twist = node.Twist.GetFrameValue(0);
-            anim.NearZ = node.NearZ.GetFrameValue(0);
-            anim.FarZ = node.FarZ.GetFrameValue(0);
-            anim.FOV = GetFOV(node.FovY.GetFrameValue(0));
-            anim.Aspect = node.Aspect.GetFrameValue(0);
+            anim.Position = new Vector3(node.PosX.GetFrameValue(startTime) * flags.mFactor,
+                node.PosY.GetFrameValue(startTime) * flags.mFactor,
+                node.PosZ.GetFrameValue(startTime) * flags.mFactor);
+            anim.Rotation = new Vector3(node.RotX.GetFrameValue(startTime) * (float)(Math.PI / 180),
+                node.RotY.GetFrameValue(startTime) * (float)(Math.PI / 180),
+                node.RotZ.GetFrameValue(startTime) * (float)(Math.PI / 180));
+            anim.Aim = new Vector3(node.AimX.GetFrameValue(startTime) * flags.mFactor,
+                node.AimY.GetFrameValue(startTime) * flags.mFactor,
+                node.AimZ.GetFrameValue(startTime) * flags.mFactor);
+            anim.Twist = node.Twist.GetFrameValue(startTime) * (float)(Math.PI / 180);
+            anim.NearZ = node.NearZ.GetFrameValue(startTime);
+            anim.FarZ = node.FarZ.GetFrameValue(startTime);
+            anim.FOV = GetFOV(node.FovY.GetFrameValue(startTime), node.Aspect.GetFrameValue(startTime));
+            anim.Aspect = node.Aspect.GetFrameValue(startTime);
 
             int id = 0;
             foreach (var set in node.KeyArrays)
             {
-                var keyframes = sCN0Handler.ConvertKeyframeSet(set, id, flags);
+                var keyframes = sCN0Handler.ConvertKeyframeSet(set, id, flags, startTime, endTime);
                 if (keyframes != null)
-                    anim.KeyframeSets.Add(keyframes);
+                {
+                    if (!lastCamera)
+                    {
+                        // fix interpolation bug
+                        if (keyframes[keyframes.Count - 1].Index == endTime &&
+                            keyframes[keyframes.Count - 2].Index == endTime-1 &&
+                            keyframes[keyframes.Count - 3].Index == endTime-2)
+                        {
+                            keyframes.RemoveAt(keyframes.Count - 1);
+                            keyframes.RemoveAt(keyframes.Count - 1);
+
+                            keyframes.Add(new GensAnimation.Keyframe());
+                            keyframes[keyframes.Count - 1].Index = endTime;
+                            keyframes[keyframes.Count - 1].Value = keyframes[keyframes.Count - 2].Value;
+
+                            // Remove unnecessary animation data
+                            if (keyframes.Count == 3)
+                            {
+                                if (!(keyframes[0].Value == keyframes[1].Value && keyframes[1].Value == keyframes[2].Value))
+                                {
+                                    anim.KeyframeSets.Add(keyframes);
+                                }
+                            }
+                            else
+                                anim.KeyframeSets.Add(keyframes);
+                        }
+                    }
+                    else
+                        anim.KeyframeSets.Add(keyframes);
+                }
                 id++;
             }
 
             return anim;
         }
 
-        public override GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags)
+        public override GensAnimation.KeyframeSet ConvertKeyframeSet(BrawlLib.Wii.Animations.KeyframeArray set, int id, SettingsFlags flags, int startTime = 0, int endTime = 0)
         {
             GensAnimation.KeyframeSet keyframes = new GensAnimation.KeyframeSet();
 
@@ -164,12 +247,12 @@ namespace SonicColorsExporter
             keyframes.Flag3 = 0;
             keyframes.Flag4 = 0;
 
-            for (uint i = 0; i < set.FrameLimit; ++i)
+            for (uint i = (uint)startTime; i <= endTime; ++i)
             {
                 var value = set.GetFrameValue(i);
 
                 // Remove unnecessary keyframes
-                if (i > 0 && i < set.FrameLimit - 1)
+                if (i > startTime && i < endTime)
                 {
                     var prevValue = set.GetFrameValue(i - 1);
                     var nextValue = set.GetFrameValue(i + 1);
@@ -179,6 +262,8 @@ namespace SonicColorsExporter
 
                 if (new[] { 0, 1, 2, 6, 7, 8 }.Contains(targetid))
                     value = value * flags.mFactor;
+                else if (new[] { 3, 4, 5, 9 }.Contains(targetid))
+                    value = value * (float)(Math.PI / 180);
                 else if (targetid == 12)
                     value = GetFOV(value);
 

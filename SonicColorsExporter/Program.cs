@@ -47,6 +47,12 @@ namespace SonicColorsExporter
                 MDL0Node node = NodeFactory.FromFile(null, infile) as MDL0Node;
                 string outfile = outpath + "\\" + Path.GetFileNameWithoutExtension(infile) + ".dae";
                 MDL0Handler.convertMDL0toDAE(node, outfile, flags);
+                MDL0Handler.convertMDL0toMaterials(node, outpath);
+            }
+            if (ext == ".CHR0")
+            {
+                CHR0Node node = NodeFactory.FromFile(null, infile) as CHR0Node;
+                CHR0Handler.processCHR0(node, outpath, flags, true);
             }
             if (ext == ".SCN0")
             {
@@ -101,14 +107,14 @@ namespace SonicColorsExporter
 
                     foreach (ARCEntryNode node2 in arc.Children[0].Children)
                     {
-                        if (node2 is REFFNode)
+                        if (node2 is REFFNode && flags.processREFF)
                         {
                             REFFNode reff = node2 as REFFNode;
                             REFFHandler.processREFF(reff, outpath, particleList, flags);
                         }
                     }
                 }
-                else if (node.Name == "stg_gismo_list.orc")
+                else if (node.Name == "stg_gismo_list.orc" && flags.processGISM)
                 {
                     node.ExportUncompressed(outpath + "\\" + node.Name);
                     BINAReader orcReader = new BINAReader(File.OpenRead(outpath + "\\" + node.Name));
@@ -127,44 +133,52 @@ namespace SonicColorsExporter
         {
             foreach (BRESGroupNode group in brres.Children)
             {
-                if (group.Type == BRESGroupNode.BRESGroupType.Models)
+                if (group.Type == BRESGroupNode.BRESGroupType.Models && flags.processMDL)
                 {
                     foreach (MDL0Node model in group.Children)
                     {
                         string outfile = outpath + "\\" + model.Name + ".dae";
-                        MDL0Handler.convertMDL0toDAE(model, outfile, flags);
-                        //MDL0Handler.convertMDL0toMaterials(model, outpath);
+                        //MDL0Handler.convertMDL0toDAE(model, outfile, flags);
+                        MDL0Handler.convertMDL0toMaterials(model, outpath);
+                        //MDL0Handler.debugListMaterialNames(model, outpath);
                     }
                 }
-                if (group.Type == BRESGroupNode.BRESGroupType.SCN0)
+                if (group.Type == BRESGroupNode.BRESGroupType.CHR0 && flags.processCHR)
+                {
+                    foreach (CHR0Node node in group.Children)
+                    {
+                        CHR0Handler.processCHR0(node, outpath, flags, false);
+                    }
+                }
+                if (group.Type == BRESGroupNode.BRESGroupType.SCN0 && flags.processSCN)
                 {
                     foreach (SCN0Node node in group.Children)
                     {
                         SCN0Handler.processSCN0(node, outpath, flags);
                     }
                 }
-                if (group.Type == BRESGroupNode.BRESGroupType.SRT0)
+                if (group.Type == BRESGroupNode.BRESGroupType.SRT0 && flags.processSRT)
                 {
                     foreach (SRT0Node node in group.Children)
                     {
                         SRT0Handler.processSRT0(node, outpath, flags);
                     }
                 }
-                if (group.Type == BRESGroupNode.BRESGroupType.VIS0)
+                if (group.Type == BRESGroupNode.BRESGroupType.VIS0 && flags.processVIS)
                 {
                     foreach (VIS0Node node in group.Children)
                     {
                         VIS0Handler.processVIS0(node, outpath, flags);
                     }
                 }
-                if (group.Type == BRESGroupNode.BRESGroupType.PAT0)
+                if (group.Type == BRESGroupNode.BRESGroupType.PAT0 && flags.processPAT)
                 {
                     foreach (PAT0Node node in group.Children)
                     {
                         PAT0Handler.processPAT0(node, outpath, flags);
                     }
                 }
-                if (group.Type == BRESGroupNode.BRESGroupType.CLR0)
+                if (group.Type == BRESGroupNode.BRESGroupType.CLR0 && flags.processCHR)
                 {
                     foreach (CLR0Node node in group.Children)
                     {

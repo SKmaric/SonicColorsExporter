@@ -45,10 +45,11 @@ namespace SonicColorsExporter
             var ofd = new OpenFileDialog()
             {
                 Title = "Open File...",
-                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff)|*.arc;*.brres;*.mdl0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff|" +
+                Filter = "All Supported Formats (*.arc;*.brres;*.mdl0;*.chr0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff)|*.arc;*.brres;*.mdl0;*.chr0;*.scn0;*.srt0;*.vis0;*.pat0;*.clr0;*.breff|" +
                 "U8 ARC File Archive (*.arc)|*.arc|" +
                 "NW4R Resource Pack (*.brres)|*.brres|" +
                 "NW4R Model (*.mdl0)|*.mdl0|" +
+                "CHR0 Skeletal Animation (*.chr0)|*.chr0|" +
                 "SCN0 Settings (*.scn0)|*.scn0|" +
                 "SRT0 UV Animation (*.srt0)|*.srt0|" +
                 "VIS0 Animation (*.vis0)|*.vis0|" +
@@ -107,6 +108,7 @@ namespace SonicColorsExporter
             flags.opaAddGeo = chk_OpaAddGeo.Checked;
             flags.AnimsXML = chk_AnimAsXML.Checked;
             flags.flipXUV = true;
+            flags.separateFolders = false;
 
             //Check if output path exists
             if (!Directory.Exists(outpath))
@@ -156,8 +158,15 @@ namespace SonicColorsExporter
 
                 foreach (string infile in files)
                 {
+                    string curOutPath = outpath;
                     //lbl_currentFile.Text = Path.GetFileName(infile);
-                    Program.ProcessFile(infile, outpath, flags);
+                    if (flags.separateFolders)
+                    {
+                        string curName = Path.GetFileNameWithoutExtension(infile);
+                        Directory.CreateDirectory(outpath + "\\" + curName);
+                        curOutPath = outpath + "\\" + curName;
+                    }
+                    Program.ProcessFile(infile, curOutPath, flags);
                     progressBar.Value++;
                 }
 
