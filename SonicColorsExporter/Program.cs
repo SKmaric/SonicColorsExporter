@@ -138,7 +138,7 @@ namespace SonicColorsExporter
                     foreach (MDL0Node model in group.Children)
                     {
                         string outfile = outpath + "\\" + model.Name + ".dae";
-                        //MDL0Handler.convertMDL0toDAE(model, outfile, flags);
+                        MDL0Handler.convertMDL0toDAE(model, outfile, flags);
                         MDL0Handler.convertMDL0toMaterials(model, outpath);
                         //MDL0Handler.debugListMaterialNames(model, outpath);
                     }
