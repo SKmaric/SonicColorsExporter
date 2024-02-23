@@ -12,6 +12,10 @@ namespace SonicColorsExporter
     {
         public static void processCHR0(CHR0Node chr0, string outpath, SettingsFlags flags, bool solo = true)
         {
+            float mFactor = 1.0f;
+            if (flags.scaleMode)
+                mFactor = flags.mFactor;
+                
             string outfile = outpath + "\\" + chr0.Name + ".anim";
             if (!solo)
             {
@@ -22,13 +26,13 @@ namespace SonicColorsExporter
                         foreach (MDL0Node model in group.Children)
                         {
                             if (model.Name == chr0.Name)
-                                AnimFormat.Serialize(chr0, outfile, model);
+                                AnimFormat.Serialize(chr0, outfile, model, mFactor);
                         }
                     }
                 }
             }
             else
-                AnimFormat.Serialize(chr0, outfile);
+                AnimFormat.Serialize(chr0, outfile, mFactor);
         }
     }
 }
