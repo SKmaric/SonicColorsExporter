@@ -10,6 +10,7 @@ using HedgeLib;
 using HedgeLib.IO;
 using HedgeLib.Exceptions;
 using HedgeLib.Animations;
+using System.Text.Json;
 
 namespace SonicColorsExporter
 {
@@ -36,6 +37,14 @@ namespace SonicColorsExporter
                         {
                             outfile = outpath + "\\" + scn0.Name + "-" + node.Name + ".cam-anim";
                             animation.Save(outfile);
+                        }
+
+                        bool writeAcornScn0 = true;
+
+                        if (writeAcornScn0)
+                        {
+                            outfile = outpath + "\\" + scn0.Name + ".acorn_scn0";
+                            ExportAcornScn0(node, flags, outfile);
                         }
                     }
                 }
@@ -79,7 +88,7 @@ namespace SonicColorsExporter
                 // Detect camera shots based on FOV keyframes
                 var FOVFrames = node.KeyArrays[13];
 
-                bool loopExit = false;
+                //bool loopExit = false;
                 var curKeyFrame = FOVFrames.GetKeyframe(0);
                 while (curKeyFrame._index >= 0)
                 {
@@ -286,6 +295,112 @@ namespace SonicColorsExporter
             output = (float)((Math.PI / 180) * input) * aspect;
 
             return output;
+        }
+
+        private static void ExportAcornScn0(SCN0CameraNode node, SettingsFlags flags, string outpath)
+        {
+            if (node == null) return;
+
+            bool isCompress = true;
+
+            var options = new JsonWriterOptions
+            {
+                Indented = true
+            };
+
+            var fileStream = File.Create(outpath);
+
+            var writer = new Utf8JsonWriter(fileStream, options);
+            
+            writer.WriteStartObject();
+            writer.WriteNumber("FrameCount", node.FrameCount - 1);
+            writer.WriteBoolean("Loop", true);
+
+            writer.WriteStartArray("CameraFrames");
+
+            writer.WriteStartObject();
+            writer.WriteString("Name", node.Name);
+            writer.WriteString("Type", node.Type.ToString());
+            writer.WriteString("ProjectionType", node.ProjectionType.ToString());
+
+            writer.WriteStartArray("Frames");
+            for (uint i = 0; i <= node.FrameCount - 1; ++i)
+            {
+                if (isCompress)
+                {
+                    if (i > 0 && i < node.FrameCount - 1)
+                    {
+                        bool isSkipThisFrame = true;
+                        foreach (var set in node.KeyArrays)
+                        {
+                            if (set.GetFrameValue(i) != set.GetFrameValue(i-1) || set.GetFrameValue(i) != set.GetFrameValue(i + 1))
+                            {
+                                isSkipThisFrame = false;
+                                break;
+                            }
+                        }
+
+                        if (isSkipThisFrame)
+                            continue;
+                    }
+                }
+
+                writer.WriteStartObject();
+                writer.WriteNumber("Aspect", node.Aspect.GetFrameValue(i));
+                writer.WriteNumber("NearZ", node.NearZ.GetFrameValue(i));
+                writer.WriteNumber("FarZ", node.FarZ.GetFrameValue(i));
+                writer.WriteNumber("Twist", node.Twist.GetFrameValue(i));
+                writer.WriteNumber("FovY", node.FovY.GetFrameValue(i));
+                writer.WriteNumber("Height", node.Height.GetFrameValue(i));
+                //writer.WriteNumber("PosXSlope", 0);
+                //writer.WriteNumber("PosYSlope", 0);
+                //writer.WriteNumber("PosZSlope", 0);
+                //writer.WriteNumber("AspectSlope", 0);
+                //writer.WriteNumber("NearZSlope", 0);
+                //writer.WriteNumber("FarZSlope", 0);
+                //writer.WriteNumber("RotXSlope", 0);
+                //writer.WriteNumber("RotYSlope", 0);
+                //writer.WriteNumber("RotZSlope", 0);
+                //writer.WriteNumber("AimXSlope", 0);
+                //writer.WriteNumber("AimYSlope", 0);
+                //writer.WriteNumber("AimZSlope", 0);
+                //writer.WriteNumber("TwistSlope", 0);
+                //writer.WriteNumber("FovYSlope", 0);
+                //writer.WriteNumber("HeightSlope", 0);
+                writer.WriteNumber("Flags", 0);
+                writer.WriteNumber("FrameNum", i);
+
+                writer.WriteStartObject("Position");
+                writer.WriteNumber("X", node.PosX.GetFrameValue(i));
+                writer.WriteNumber("Y", node.PosY.GetFrameValue(i));
+                writer.WriteNumber("Z", node.PosZ.GetFrameValue(i));
+                writer.WriteEndObject();
+
+                writer.WriteStartObject("Rotation");
+                writer.WriteNumber("X", node.RotX.GetFrameValue(i));
+                writer.WriteNumber("Y", node.RotY.GetFrameValue(i));
+                writer.WriteNumber("Z", node.RotZ.GetFrameValue(i));
+                writer.WriteEndObject();
+
+                writer.WriteStartObject("Aim");
+                writer.WriteNumber("X", node.AimX.GetFrameValue(i));
+                writer.WriteNumber("Y", node.AimY.GetFrameValue(i));
+                writer.WriteNumber("Z", node.AimZ.GetFrameValue(i));
+                writer.WriteEndObject();
+
+                writer.WriteEndObject();
+            }
+
+            writer.WriteEndArray();
+
+            writer.WriteEndObject();
+
+            writer.WriteEndArray();
+
+            writer.WriteEndObject();
+            writer.Flush();
+            
+            fileStream.Close();
         }
     }
 }
