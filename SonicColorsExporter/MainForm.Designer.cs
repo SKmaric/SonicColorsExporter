@@ -53,6 +53,7 @@
             this.chk_ScaleMode = new System.Windows.Forms.CheckBox();
             this.lbl_currentFile = new System.Windows.Forms.Label();
             this.chk_AnimAsXML = new System.Windows.Forms.CheckBox();
+            this.chk_CHR0asDAE = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btn_SrcPath
@@ -302,11 +303,22 @@
             this.chk_AnimAsXML.Text = "Save anims as XML";
             this.chk_AnimAsXML.UseVisualStyleBackColor = true;
             // 
+            // chk_CHR0asDAE
+            // 
+            this.chk_CHR0asDAE.AutoSize = true;
+            this.chk_CHR0asDAE.Location = new System.Drawing.Point(138, 123);
+            this.chk_CHR0asDAE.Name = "chk_CHR0asDAE";
+            this.chk_CHR0asDAE.Size = new System.Drawing.Size(122, 17);
+            this.chk_CHR0asDAE.TabIndex = 26;
+            this.chk_CHR0asDAE.Text = "Save CHR0 as DAE";
+            this.chk_CHR0asDAE.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(421, 263);
+            this.Controls.Add(this.chk_CHR0asDAE);
             this.Controls.Add(this.chk_AnimAsXML);
             this.Controls.Add(this.lbl_currentFile);
             this.Controls.Add(this.chk_ScaleMode);
@@ -366,6 +378,7 @@
         private System.Windows.Forms.CheckBox chk_ScaleMode;
         private System.Windows.Forms.Label lbl_currentFile;
         private System.Windows.Forms.CheckBox chk_AnimAsXML;
+        private System.Windows.Forms.CheckBox chk_CHR0asDAE;
     }
 }
 

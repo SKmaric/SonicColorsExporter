@@ -107,6 +107,7 @@ namespace SonicColorsExporter
             flags.lightmapMatMerge = chk_LightmapMatMerge.Checked;
             flags.opaAddGeo = chk_OpaAddGeo.Checked;
             flags.AnimsXML = chk_AnimAsXML.Checked;
+            flags.chr0DAE = chk_CHR0asDAE.Checked;
             flags.flipXUV = true;
             flags.separateFolders = false;
 

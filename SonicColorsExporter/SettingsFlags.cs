@@ -18,6 +18,7 @@ namespace SonicColorsExporter
         public bool lightmapMatMerge;
         public bool opaAddGeo;
         public bool AnimsXML;
+        public bool chr0DAE = false;
         public bool flipXUV;
         public float cFactor = 1.0f / 255.0f;
         public float mFactor = 1.0f / 10.0f;

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BrawlLib.Modeling.Collada;
 using BrawlLib.SSBB.ResourceNodes;
 using BrawlLib.Wii.Animations;
+using HedgeLib.Models;
 
 namespace SonicColorsExporter
 {
@@ -16,7 +18,7 @@ namespace SonicColorsExporter
             if (flags.scaleMode)
                 mFactor = flags.mFactor;
                 
-            string outfile = outpath + "\\" + chr0.Name + ".anim";
+            string outfile = outpath + "\\" + chr0.Name + (flags.chr0DAE?".dae":".anim");
             if (!solo)
             {
                 foreach (BRESGroupNode group in chr0.Parent.Parent.Children)
@@ -25,14 +27,30 @@ namespace SonicColorsExporter
                     {
                         foreach (MDL0Node model in group.Children)
                         {
-                            if (model.Name == chr0.Name)
-                                AnimFormat.Serialize(chr0, outfile, model, mFactor);
+                            if (flags.chr0DAE)
+                            {
+                                if (model.Name == chr0.Name || model.Name == "chr_Sonic_SD")
+                                    ColladaExportColors.Serialize(chr0, 60.0f, false, outfile, model);
+                            }
+                            else
+                            {
+                                if (model.Name == chr0.Name || model.Name == "chr_Sonic_SD")
+                                    AnimFormat.Serialize(chr0, outfile, model, mFactor);
+                            }
                         }
                     }
                 }
             }
             else
-                AnimFormat.Serialize(chr0, outfile, mFactor);
+            {
+                if (flags.chr0DAE)
+                {
+                    ColladaExportColors.Serialize(chr0, 60.0f, false, outfile);
+                }
+                else
+                    AnimFormat.Serialize(chr0, outfile, mFactor);
+            }
+                
         }
     }
 }
