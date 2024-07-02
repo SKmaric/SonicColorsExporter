@@ -141,8 +141,18 @@ namespace SonicColorsExporter
                 string[] separatingStrings = { "__" };
                 var matNameParts = srcMat.Name.Split(separatingStrings, System.StringSplitOptions.RemoveEmptyEntries);
 
-                string matNameBase = matNameParts[0];
-                string matNameShader = matNameParts[1]; // Full original name
+                string matNameBase;
+                string matNameShader;
+                try
+                {
+                    matNameBase = matNameParts[0];
+                    matNameShader = matNameParts[1]; // Full original name
+                }
+                catch
+                {
+                    int pFrom = srcMat.Name.LastIndexOf("_");
+                    matNameShader = srcMat.Name.Substring(pFrom);
+                }
 
                 string matPrefix = "";
                 string matNameShaderNoPrefix;
