@@ -78,9 +78,7 @@ namespace SonicColorsExporter
 
             animation.Header.RootNodeType = 2;
 
-            bool splitCameraShots = true;
-
-            if (splitCameraShots)
+            if (flags.splitCameraShots)
             {
                 List<BrawlLib.Wii.Animations.KeyframeEntry> KeyframeList = new List<BrawlLib.Wii.Animations.KeyframeEntry>();
                 List<int> camStartTimes = new List<int>();
@@ -138,6 +136,8 @@ namespace SonicColorsExporter
             SCN0Handler sCN0Handler = new SCN0Handler();
             GensAnimation.Animation anim = new GensAnimation.Animation();
 
+            bool useVerticalFOV = true;
+
             anim.Name = node.Name; // Default name if not splitting takes
             if (camID > 0)
             {
@@ -168,7 +168,9 @@ namespace SonicColorsExporter
             anim.NearZ = node.NearZ.GetFrameValue(startTime);
             anim.FarZ = node.FarZ.GetFrameValue(startTime);
             anim.FOV = GetFOV(node.FovY.GetFrameValue(startTime), node.Aspect.GetFrameValue(startTime));
-            anim.Aspect = node.Aspect.GetFrameValue(startTime);
+            anim.Aspect = 1f;
+            if (!useVerticalFOV)
+                anim.Aspect = node.Aspect.GetFrameValue(startTime);
 
             int id = 0;
             foreach (var set in node.KeyArrays)
@@ -289,10 +291,16 @@ namespace SonicColorsExporter
             return keyframes;
         }
 
-        private static float GetFOV(float input, float aspect = 1.777778f)
+        private static float GetFOV(float input, float aspect = 1.777778f, bool useVerticalFOV = true)
         {
+            // input is vertical FOV in degrees
+            // output is horizontal FOV in radians
             float output;
-            output = (float)((Math.PI / 180) * input) * aspect;
+            if (useVerticalFOV)
+                output = 2f * (float)Math.Atan(Math.Tan(input * Math.PI / 360));
+            else
+                output = 2f * (float)Math.Atan(Math.Tan(input * Math.PI / 360) / aspect);
+
 
             return output;
         }

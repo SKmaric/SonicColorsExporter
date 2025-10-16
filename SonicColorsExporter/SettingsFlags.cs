@@ -32,5 +32,6 @@ namespace SonicColorsExporter
         public bool processCLR = true;
         public bool processREFF = true;
         public bool processGISM = true;
+        public bool splitCameraShots = false;
     }
 }
